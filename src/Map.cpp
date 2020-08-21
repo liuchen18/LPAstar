@@ -16,10 +16,10 @@ void Map::printMap(){
         for(int j = 0; j<col; j++){
             if(myMap[i][j]->status==Status::road){
                 
-                cout<<"  .  ";
+                cout<<"  R  ";
             }
             else if(myMap[i][j]->status==Status::path){
-                cout<<"  #  ";
+                cout<<"  P  ";
             }
             else if(myMap[i][j]->status==Status::start){
             
@@ -31,7 +31,7 @@ void Map::printMap(){
             }
             else{
           
-                cout<<"  @  ";
+                cout<<"  O  ";
             }
         }
         cout<<"\n\n";
@@ -64,7 +64,7 @@ vector<shared_ptr<Node>> Map::getNeighbor(shared_ptr<Node> curr){
     int y = curr->y;
     vector<shared_ptr<Node>> neighbor;
     for(auto &dir:dirs){
-        if(x+dir[0]>=0&&x+dir[0]<row&&y+dir[1]>=0&&y+dir[1]<col&&myMap[x+dir[0]][y+dir[1]]->status!=Status::obstacle){
+        if(x+dir[0]>=0 && x+dir[0]<row && y+dir[1]>=0 && y+dir[1]<col && myMap[x+dir[0]][y+dir[1]]->status!=Status::obstacle){
             neighbor.push_back(myMap[x+dir[0]][y+dir[1]]);
         }   
     }
