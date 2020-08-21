@@ -22,7 +22,7 @@ int LPAStar::computeH(shared_ptr<Node> curr){
 void LPAStar::remove(shared_ptr<Node> node){
     
     for(int i = 0; i<openList.size(); i++){
-        if(openList[i]->x==node->x&&openList[i]->y==node->y){
+        if(openList[i]->x == node->x && openList[i]->y == node->y){
             openList.erase(openList.begin()+i);
             break;
         }
@@ -50,6 +50,7 @@ void LPAStar::insert(shared_ptr<Node> node){
     });
 }
 
+
 void LPAStar::updateVertex(shared_ptr<Node> curr){
     int x = curr->x;
     int y = curr->y;
@@ -66,7 +67,7 @@ void LPAStar::updateVertex(shared_ptr<Node> curr){
 bool LPAStar::compare(shared_ptr<Node> n1, shared_ptr<Node> n2){
     auto res1 = calculateKey(n1);
     auto res2 = calculateKey(n2);
-    if((res1.first<res2.first)||(res1.first==res2.first&&res1.second<res2.second)){
+    if((res1.first<res2.first)||(res1.first==res2.first && res1.second<res2.second)){
         return true;
     }
     return false;
@@ -81,12 +82,12 @@ void LPAStar::inti(){
 
 void LPAStar::planner(){
 
-    while(openList.size()>0&&(compare(openList[0],end)||end->rhs!=end->g)){
+
+    while(openList.size()>0 && (compare(openList[0],end) || end->rhs!=end->g)){
         shared_ptr<Node> curr = openList[0];
-        //cout<<curr->x<<" "<<curr->y<<" "<<curr->rhs<<" "<<curr->g<<endl;
         remove(curr);
         vector<shared_ptr<Node>> neighbors = roadMap.getNeighbor(curr);
-        if(curr->g>curr->rhs){
+        if(curr->g > curr->rhs){
             curr->g = curr->rhs;
             for(auto &neighbor: neighbors){
                 //cout<<neighbor->x<<" "<<neighbor->y<<endl;
@@ -107,7 +108,7 @@ void LPAStar::planner(){
 vector<pair<int,int>> LPAStar::constructPath(){
     //cout<<end->rhs<<" "<<end->g<<endl;
     vector<pair<int,int>> trajectory;
-    if(end->rhs==end->g&&end->g!=infi){
+    if(end->rhs == end->g && end->g!= infi){
         shared_ptr<Node> ref = end;
         while(ref!=nullptr){
             if(ref->status==Status::road){

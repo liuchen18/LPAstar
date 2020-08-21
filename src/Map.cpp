@@ -16,7 +16,7 @@ void Map::printMap(){
         for(int j = 0; j<col; j++){
             if(myMap[i][j]->status==Status::road){
                 
-                cout<<"  R  ";
+                cout<<"  r  ";
             }
             else if(myMap[i][j]->status==Status::path){
                 cout<<"  P  ";
@@ -31,7 +31,7 @@ void Map::printMap(){
             }
             else{
           
-                cout<<"  O  ";
+                cout<<"  o  ";
             }
         }
         cout<<"\n\n";

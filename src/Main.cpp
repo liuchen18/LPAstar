@@ -47,12 +47,12 @@ int main(){
     cin >> number_of_obstacle; 
     //end of user input
     
-    Map map{row,col};
+    Map map(row,col);
     
     vector<vector<int>> obstacles = randomGenerateObstacle(number_of_obstacle,row, col, startx, starty, endx, endy);
 
     map.setObstacle(obstacles);
-    LPAStar pathplan{startx, starty, endx,endy,map};
+    LPAStar pathplan(startx, starty, endx,endy,map);
     cout<<"\n\n compute the shortest path from the start position to end position before the map change"<<"\n\n";
     pathplan.inti();
     pathplan.planner();
